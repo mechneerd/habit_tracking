@@ -1,0 +1,65 @@
+import requests
+from datetime import datetime
+
+url = 'https://pixe.la/v1/users'
+
+today = datetime(year=2022, month=7, day=12)
+post_day = today.strftime('%Y%m%d')
+kcal_burnt = '207'
+
+# TO CREATE USER
+
+#parameter_to_create_user = {"token": "tokenid",
+#                            "username": "name",
+#                            "agreeTermsOfService": "yes",
+#                            "notMinor": "yes"
+#                            }
+
+#response = requests.post(url=url, json=parameter_to_create_user)
+
+#print(response.text)
+
+# TO ADD GRAPH
+
+#graph_parameter = {"id": "urid",
+#                   "name": "workout",
+#                   "unit": "kcal",
+#                   "type": "int",
+#                   "color": "shibafu"
+#                   }
+#graph_url = 'https://pixe.la/v1/users/prasanthmechneerd/graphs'
+
+token = {
+    'X-USER-TOKEN': 'urtoken'
+}
+
+#response = requests.post(url=graph_url, json=graph_parameter, headers=token)
+#print(response.text)
+
+# TO POST
+
+post_url = 'https://pixe.la/v1/users/prasanthmechneerd/graphs/urid'
+post_value_parameter = {"date": post_day,
+                        "quantity": kcal_burnt
+                        }
+
+response = requests.post(url=post_url, json=post_value_parameter, headers=token)
+print(response.text)
+
+# TO UPDATE
+
+#update_url = 'https://pixe.la/v1/users/prasanthmechneerd/graphs/urid/20220711'
+
+#parameter_to_update = {"quantity": "139"}
+
+#response = requests.put(url=update_url, json=parameter_to_update, headers=token)
+#print(response)
+
+
+# TO DELETE
+
+#delete_url = 'https://pixe.la/v1/users/prasanthmechneerd/graphs/urid/20200710'
+
+
+#response = requests.delete(url=update_url, headers=token)
+#print(response.text)
